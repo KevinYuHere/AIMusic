@@ -1,4 +1,21 @@
-const { defineConfig } = require('@vue/cli-service')
+const { defineConfig } = require('@vue/cli-service');
 module.exports = defineConfig({
-  transpileDependencies: true
-})
+  transpileDependencies: true,
+  devServer: {
+    client: {
+      overlay: {
+        errors: true,
+        runtimeErrors: (error) => {
+          if (error.message === 'ResizeObserver loop completed with undelivered notifications.') {
+            return false;
+          }
+          return true;
+        },
+        warnings: false,
+      },
+    }
+  },
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/AIMusic/'
+    : '/',
+});
