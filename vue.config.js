@@ -15,6 +15,7 @@ module.exports = defineConfig({
       },
     }
   },
+  outputDir: 'docs',
   publicPath: process.env.NODE_ENV === 'production'
     ? '/AIMusic/'
     : '/',
