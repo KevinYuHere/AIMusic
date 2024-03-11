@@ -10,6 +10,7 @@ const About = ref(false);
   <a-config-provider :locale="zhCN" :theme="{
       token: {
         colorPrimary: '#bf1103',
+        fontFamily: 'MiSans,serif'
       },
     }">
     <a-app>
@@ -92,6 +93,11 @@ const About = ref(false);
   </a-config-provider>
 </template>
 <style>
+* {
+  font-family: MiSans,serif;
+  letter-spacing: 0.02em;
+}
+
 body {
   background-color: #fff;
 }
