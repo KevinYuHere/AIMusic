@@ -10,7 +10,7 @@ const About = ref(false);
   <a-config-provider :locale="zhCN" :theme="{
       token: {
         colorPrimary: '#bf1103',
-        fontFamily: 'MiSans,serif'
+        fontFamily: 'MiSans VF,serif'
       },
     }">
     <a-app>
@@ -94,7 +94,7 @@ const About = ref(false);
 </template>
 <style>
 * {
-  font-family: MiSans,serif;
+  font-family: MiSans VF, serif;
   letter-spacing: 0.02em;
 }
 
@@ -103,9 +103,9 @@ body {
 }
 
 .title-svg {
-  width: 36px;
-  height: 36px;
-  padding-bottom: 12px
+  width: 40px;
+  height: 40px;
+  padding-bottom: 15px
 }
 
 .footer-container {

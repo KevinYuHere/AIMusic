@@ -184,17 +184,21 @@ const rhymeOptions = [
 const rhymeValue = ref([]);
 
 function generateLyrics() {
-  if(text.value === '') {
+  if (text.value === '') {
     message.error('请先输入提示文本');
     return;
   }
   lyricsPercentShow.value = true;
   let i;
   for (i = 1; i < 14; i++) {
-    let a=i;
-    setTimeout(()=>{lyricsPercent.value = a*7;}, a*1260);
+    let a = i;
+    setTimeout(() => {
+      lyricsPercent.value = a * 7;
+    }, a * 1260);
   }
-  setTimeout(()=>{lyricsPercent.value = 100;lyrics.value = `你挡在历史的面前
+  setTimeout(() => {
+    lyricsPercent.value = 100;
+    lyrics.value = `你挡在历史的面前
 放慢我们前进的时间
 当野草被智者们点燃
 勇敢的人便跟随着火焰
@@ -205,12 +209,17 @@ function generateLyrics() {
 你倒在一个荒唐的时代
 留下被止禁的存在
 也许在另一个世界
-你不用躲在盒子里面`;}, 14*1260);
-  setTimeout(()=>{lyricsPercentShow.value = false;lyricsPercent.value=0;message.success('歌词生成完成');}, 14*1260+1000);
+你不用躲在盒子里面`;
+  }, 14 * 1260);
+  setTimeout(() => {
+    lyricsPercentShow.value = false;
+    lyricsPercent.value = 0;
+    message.success('歌词生成完成');
+  }, 14 * 1260 + 1000);
 }
 
 function generateMusic() {
-  if(lyrics.value === '' || text.value === '') {
+  if (lyrics.value === '' || text.value === '') {
     message.error('请先填写歌词和提示文本');
     return;
   }
@@ -218,11 +227,21 @@ function generateMusic() {
   musicPlayerShow.value = false;
   let i;
   for (i = 1; i <= 16; i++) {
-    let a=i;
-    setTimeout(()=>{musicPercent.value = a*6;}, a*1760);
+    let a = i;
+    setTimeout(() => {
+      musicPercent.value = a * 6;
+    }, a * 1760);
   }
-  setTimeout(()=>{musicPercent.value = 100;music.value = 'http://music.163.com/song/media/outer/url?id=2122308130.mp3';}, 16*1760);
-  setTimeout(()=>{musicPlayerShow.value = true;musicPercentShow.value = false;musicPercent.value=0;message.success('音乐生成完成');}, 16*1760+1000);
+  setTimeout(() => {
+    musicPercent.value = 100;
+    music.value = 'http://music.163.com/song/media/outer/url?id=2122308130.mp3';
+  }, 16 * 1760);
+  setTimeout(() => {
+    musicPlayerShow.value = true;
+    musicPercentShow.value = false;
+    musicPercent.value = 0;
+    message.success('音乐生成完成');
+  }, 16 * 1760 + 1000);
 }
 
 </script>
@@ -230,102 +249,130 @@ function generateMusic() {
   <div id="create-container">
     <a-typography-title style="margin-top: 60px;">撷章遣思</a-typography-title>
     <a-typography-paragraph>
-      在这里，你可以亲自尝试把中华优秀传统文学融入到你的音乐创作中。只需要输入一段书本或诗词中的文字，我们就可以为你生成一段歌词和乐曲，帮助你快速创造富有中国风的音乐作品。
+      在此，您可以亲自利用我们的AI技术将中华优秀经典文学融入到您的RAP歌曲创作中。
     </a-typography-paragraph>
-    <div class="create-col"><div>
-      <a-typography-title :level="2">提示文本</a-typography-title>
-      <a-textarea class="choose unit-space" :bordered="false" allow-clear show-count :maxlength="1000"
-                  v-model:value="text"
-                  placeholder="请在此处输入提示文本" :auto-size="{ minRows: 5, maxRows: 20 }"/>
+    <a-typography-paragraph>
+      只需输入一段经典名著或诗词歌赋中的文字作为提示文本，再选择一些设置，我们就可以为您生成一段歌词。随后，您可以在根据自己的意愿调整歌词后让AI为您快速生成伴奏。相信我们的AI技术能帮助您快速创造属于您自己的中国风RAP作品。
+    </a-typography-paragraph>
+    <div class="create-col">
+      <div>
+        <a-typography-title :level="2">提示文本</a-typography-title>
+        <a-typography-paragraph>
+          <a-textarea class="choose unit-space" :bordered="false" allow-clear show-count :maxlength="1000"
+                      v-model:value="text"
+                      placeholder="请在此处输入提示文本" :auto-size="{ minRows: 5, maxRows: 20 }"/>
+        </a-typography-paragraph>
+      </div>
+      <div>
+        <a-typography-title :level="2">限制韵脚</a-typography-title>
+        <a-typography-paragraph>
+          请选择您可以接受的韵脚，AI将在您划定的各韵脚中选择一个用于押韵。如果您不选择任何韵脚，我们将为您随机生成韵脚；此外，目前只支持单韵脚，如果您有押尾韵、重韵、交叉韵、平仄韵等需求，还请您等待我们的后续更新。
+        </a-typography-paragraph>
+        <a-typography-paragraph>
+          正如在真正的音乐创作中一般，部分歌词可能会不押韵。如果出现不符合您要求的歌词，还请您手动调整。
+        </a-typography-paragraph>
+        <a-typography-paragraph>
+          <a-popover title="关于韵脚" trigger="click" placement="topLeft" :overlayStyle="{'max-width': '410px'}">
+            <template #content>
+              <p>
+                现代标准汉语逐渐形成以后，依照其音韵结构，前人曾整理出多种韵母分类，可统称为“中华新韵”。此处以广西人民出版社于1979年出版的《现代诗韵》（作者秦似）为分类依据。</p>
+            </template>
+            <a-cascader
+                class="choose unit-space"
+                expand-trigger="hover"
+                v-model:value="rhymeValue"
+                style="width: 100%"
+                multiple
+                allowClear
+                showSearch
+                :bordered="false"
+                max-tag-count="17"
+                :options="rhymeOptions"
+                placeholder="请在此处选择韵脚，可直接输入关键词进行搜索"
+                :show-checked-strategy="Cascader.SHOW_CHILD"
+            >
+              <template #tagRender="data">
+                <a-tag :key="data.value" color="red">{{ data.label.match(/（([^（）]+)）/)[1] }}</a-tag>
+              </template>
+            </a-cascader>
+          </a-popover>
+        </a-typography-paragraph>
+        <a-typography-title :level="2">划定倾向</a-typography-title>
+        <a-typography-paragraph>
+          请选择您的创作倾向，越大的值表示给予AI越高的自由度，反之则越保守。如果您不选择倾向，AI将自由发挥。
+        </a-typography-paragraph>
+        <a-typography-paragraph>
+          <a-slider v-model:value="styleValue" :marks="styleMarks" :tooltipOpen="false" style="padding-bottom: 24px">
+          </a-slider>
+        </a-typography-paragraph>
+        <a-typography-title :level="2">选择曲速</a-typography-title>
+        <a-typography-paragraph>
+          请选择您希望的大致曲速。如果您不选择曲速，则将采用默认设置。
+        </a-typography-paragraph>
+        <a-typography-paragraph>
+          <a-slider v-model:value="speedValue" :marks="speedMarks" :included="false" :tooltipOpen="false" :step="null"
+                    style="padding-bottom: 24px">
+          </a-slider>
+        </a-typography-paragraph>
+      </div>
     </div>
-    <div>
-      <a-typography-title :level="2">限制韵脚</a-typography-title>
-      <a-typography-paragraph>
-        请选择您可以接受的韵脚，AI将在您划定的各韵脚中选择一个用于押韵。如果您不选择任何韵脚，我们将为您随机生成韵脚；此外，目前只支持单韵脚，如果您有押尾韵、重韵、交叉韵、平仄韵等需求，还请您等待我们的后续更新。
-      </a-typography-paragraph>
-      <a-typography-paragraph>
-        正如在真正的音乐创作中一般，部分歌词可能会不押韵。如果出现不符合您要求的歌词，还请您手动调整。
-      </a-typography-paragraph>
-      <a-popover title="关于韵脚" trigger="click" placement="topLeft" :overlayStyle="{'max-width': '400px'}">
-        <template #content>
-          <p>现代标准汉语逐渐形成以后，依照其音韵结构，前人曾整理出多种韵母分类，可统称为“中华新韵”。此处以广西人民出版社于1979年出版的《现代诗韵》（作者秦似）为分类依据。</p>
-        </template>
-        <a-cascader
-            class="choose unit-space"
-            expand-trigger="hover"
-            v-model:value="rhymeValue"
-            style="width: 100%"
-            multiple
-            allowClear
-            showSearch
-            :bordered="false"
-            max-tag-count="17"
-            :options="rhymeOptions"
-            placeholder="请在此处选择韵脚，可直接输入关键词进行搜索"
-            :show-checked-strategy="Cascader.SHOW_CHILD"
-        >
-          <template #tagRender="data">
-            <a-tag :key="data.value" color="red">{{ data.label.match(/（([^（）]+)）/)[1] }}</a-tag>
-          </template>
-        </a-cascader>
-      </a-popover>
-      <a-typography-title :level="2">划定倾向</a-typography-title>
-      <a-typography-paragraph>
-        请选择您的创作倾向，越大的值表示给予AI越高的自由度，反之则越保守。如果您不选择倾向，AI将自由发挥。
-      </a-typography-paragraph>
-      <a-slider v-model:value="styleValue" :marks="styleMarks" :tooltipOpen="false">
-      </a-slider>
-      <a-typography-title :level="2">选择曲速</a-typography-title>
-      <a-typography-paragraph>
-        请选择您希望的大致曲速。如果您不选择曲速，则将采用默认设置。
-      </a-typography-paragraph>
-      <a-slider class="unit-space" v-model:value="speedValue" :marks="speedMarks" :included="false" :tooltipOpen="false" :step="null">
-      </a-slider>
-    </div></div>
     <a-typography-title style="margin-top: 60px;">捉文织曲</a-typography-title>
     <div class="create-col">
-    <div>
-      <a-typography-title :level="2">创作歌词</a-typography-title>
-      <a-typography-paragraph>
-        点击下方按钮，AI将为您创作歌词。请注意，AI生成的歌词可能不会完全符合您的预期，您可能需要手动调整。
-      </a-typography-paragraph>
-      <a-button @click="generateLyrics" class="unit-space" :disabled="lyricsPercentShow">生成歌词</a-button>
-      <a-typography-title :level="3">歌词预览</a-typography-title>
-      <a-progress :percent="lyricsPercent" v-show="lyricsPercentShow" size="small" :stroke-color="{
+      <div>
+        <a-typography-title :level="2">创作歌词</a-typography-title>
+        <a-typography-paragraph>
+          点击下方按钮，AI将为您创作歌词。请注意，AI生成的歌词可能不会完全符合您的预期，您可能需要手动调整。
+        </a-typography-paragraph>
+        <a-typography-paragraph>
+          <a-button @click="generateLyrics" :disabled="lyricsPercentShow">生成歌词</a-button>
+        </a-typography-paragraph>
+        <a-typography-title :level="3">歌词预览</a-typography-title>
+        <a-typography-paragraph>
+          <a-progress :percent="lyricsPercent" v-show="lyricsPercentShow" size="small" :stroke-color="{
         '0%': '#bf1103',
         '100%': '#1677ff',
       }"/>
-      <a-textarea class="choose unit-space" :bordered="false" show-count v-model:value="lyrics" placeholder="歌词预览"
-                  :auto-size="{ minRows: 2, maxRows: 25 }"/>
+        </a-typography-paragraph>
+        <a-typography-paragraph>
+          <a-textarea class="choose" :bordered="false" show-count v-model:value="lyrics" placeholder="歌词预览"
+                      :auto-size="{ minRows: 2, maxRows: 25 }"/>
+        </a-typography-paragraph>
+      </div>
+      <div>
+        <a-typography-title :level="2">编写伴奏</a-typography-title>
+        <a-typography-paragraph>
+          <a-progress :percent="musicPercent" v-show="musicPercentShow" size="small" :stroke-color="{
+        '0%': '#bf1103',
+        '100%': '#1677ff',
+      }"/>
+        </a-typography-paragraph>
+        <a-typography-paragraph>
+          点击下方按钮，AI将为您智能生成伴奏。
+        </a-typography-paragraph>
+        <a-typography-paragraph>
+          <a-button @click="generateMusic" :disabled="musicPercentShow">生成伴奏</a-button>
+        </a-typography-paragraph>
+        <a-typography-paragraph>
+          <Player autoplay theme="light" loop id="audio-show" v-if="musicPlayerShow">
+            <Audio>
+              <source :src="music" type="audio/mpeg">
+              抱歉，您的浏览器不支持音频播放，请换用最新版火狐浏览器！
+            </Audio>
+            <Ui>
+              <Controls>
+                <ControlGroup style="align-items: center;">
+                  <PlaybackControl hideTooltip/>
+                  <VolumeControl hideTooltip/>
+                  <CurrentTime/>
+                  <ScrubberControl style="height: 100%"/>
+                  <EndTime style="margin-right: 10px"/>
+                </ControlGroup>
+              </Controls>
+            </Ui>
+          </Player>
+        </a-typography-paragraph>
+      </div>
     </div>
-    <div>
-      <a-typography-title :level="2">作曲和演唱</a-typography-title>
-      <a-progress :percent="musicPercent" v-show="musicPercentShow" size="small" :stroke-color="{
-        '0%': '#bf1103',
-        '100%': '#1677ff',
-      }"/>
-      <a-typography-paragraph>
-        点击下方按钮，AI将为您作曲并演唱。
-      </a-typography-paragraph>
-      <a-button @click="generateMusic" class="unit-space" :disabled="musicPercentShow">作曲并演唱</a-button><br>
-      <Player autoplay theme="light" loop id="audio-show" v-if="musicPlayerShow">
-        <Audio>
-          <source :src="music" type="audio/mpeg">
-          抱歉，您的浏览器不支持音频播放，请换用最新版火狐浏览器！
-        </Audio>
-        <Ui>
-          <Controls>
-            <ControlGroup style="align-items: center;">
-              <PlaybackControl hideTooltip/>
-              <VolumeControl hideTooltip/>
-              <CurrentTime />
-              <ScrubberControl style="height: 100%"/>
-              <EndTime style="margin-right: 10px"/>
-            </ControlGroup>
-          </Controls>
-        </Ui>
-      </Player>
-    </div></div>
   </div>
 </template>
 <style>
@@ -339,15 +386,14 @@ function generateMusic() {
 }
 
 .create-col {
-  display: grid;grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));gap: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-column-gap: 50px;
+  grid-row-gap: 1.2em;
 }
 
 .choose {
   border-left: 4px solid #bf1103;
-}
-
-.unit-space {
-  margin-bottom: 10px;
 }
 
 #create-container {

@@ -14,8 +14,13 @@
   overflow: hidden;
 }
 
-#home-title{
-  position: absolute;color: white;font-size: 80px;font-weight: bold;right: 150px;bottom: 70px;
+#home-title {
+  position: absolute;
+  color: white;
+  font-size: 80px;
+  font-weight: bold;
+  right: 150px;
+  bottom: 70px;
   @media screen and (max-width: 992px) {
     writing-mode: vertical-lr;
     font-size: 30px;
@@ -24,8 +29,13 @@
   }
 }
 
-#home-subtitle{
-  position: absolute;color: white;font-size: 40px;font-weight: bold;right: 150px;bottom: 50px;
+#home-subtitle {
+  position: absolute;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  right: 150px;
+  bottom: 50px;
   @media screen and (max-width: 992px) {
     writing-mode: vertical-lr;
     font-size: 20px;

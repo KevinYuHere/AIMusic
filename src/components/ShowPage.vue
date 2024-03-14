@@ -63,7 +63,7 @@ const detailLyrics = ref('');
 const detailCover = ref('');
 const musicUrl = ref('');
 
-function showDetail(title,id) {
+function showDetail(title, id) {
   detailLyrics.value = id + '';
   detailVisible.value = true;
   detailTitle.value = title;
@@ -127,7 +127,7 @@ function showDetail(title,id) {
                 <ControlGroup style="align-items: center;">
                   <PlaybackControl hideTooltip/>
                   <VolumeControl hideTooltip/>
-                  <CurrentTime />
+                  <CurrentTime/>
                   <ScrubberControl style="height: 100%"/>
                   <EndTime style="margin-right: 10px"/>
                 </ControlGroup>
