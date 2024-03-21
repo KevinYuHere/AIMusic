@@ -10,7 +10,7 @@ const About = ref(false);
   <a-config-provider :locale="zhCN" :theme="{
       token: {
         colorPrimary: '#bf1103',
-        fontFamily: 'MiSans VF,serif'
+        fontFamily: 'MiSans VF, -apple-system, BlinkMacSystemFont, \'Segoe UI\', Roboto, \'Helvetica Neue\', Arial, \'Noto Sans\', sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\', \'Segoe UI Symbol\', \'Noto Color Emoji\''
       },
     }">
     <a-app>
@@ -94,7 +94,7 @@ const About = ref(false);
 </template>
 <style>
 * {
-  font-family: MiSans VF, serif;
+  font-family: MiSans VF, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   letter-spacing: 0.02em;
 }
 
