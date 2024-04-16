@@ -3,7 +3,7 @@
 <template>
   <div style="position: relative;display: flex;width: 100%;justify-content: center;">
     <div class="title-image-container" style="width: 90vw;height: 90vh;">
-      <img class="image" src="https://api.hakush.in/gi/UI/UI_NameCardPic_Zhongli_P.webp">
+      <img class="image" src="https://www.dpm.org.cn/Uploads/Picture/2024/04/01/s660a32db3e46d.jpg">
     </div>
     <p id="home-title">古韵重现</p>
     <p id="home-subtitle">面向中华文化传承的AI音乐创作平台</p>
